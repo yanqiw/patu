@@ -29,7 +29,7 @@ class JandanPicSpider(scrapy.Spider):
             ooRate = pic.xpath('div[1]/div/div[2]/*[@class="vote"]/span[2]/text()').extract()
             if len(ooRate) > 0 and int(ooRate[0]) > 150:
                 item = PatuItem()
-                
+                item['support_rate'] = ooRate[0]
                 pic_url.write(str(pic.xpath('div[1]/div/div[2]/p/img/@src').extract()) + '\n')
                 if pic.xpath('div[1]/div/div[2]/p/img/@org_src'):
                     item['image_urls'] = pic.xpath('div[1]/div/div[2]/p/img/@org_src').extract()
